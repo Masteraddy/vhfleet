@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Head data --> 
+    <%- include('../includes/head.ejs', {title: 'TLFleet || Vehicle Details'}) -%>
+    <%- include('../includes/appcss.ejs') -%>
+
+</head>
+
+
+<body class="fixed-left">
+
+    <!-- Begin page -->
+    <div id="wrapper">
+
+        <!-- Top Bar Start -->
+        <%- include('../includes/topbar.ejs') -%>
+        <!-- Top Bar End -->
+            
+        <!-- ========== Left Sidebar Start ========== -->
+        <%- include('../includes/sidenav.ejs'); -%>
+        <!-- Left Sidebar End -->
+
+
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="top-detail mb-3 mx-0 card m-b-20 card-body text-xs-center">
+                        <div class="row ">
+                            <div class="col-md-9">
+                                <h3 class="name"> <a><%= vehicle.vehicleName %></a> </h3>
+                                <p class="detail"> <%= vehicle.type %>·<%= vehicle.year %> <%= vehicle.vehicleName %>-<%= vehicle.model %>·<%= vehicle.vin %>·<%= vehicle.licensePlate %></p>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="#"
+                                    class="btn btn-success btn-right btn-bordred waves-effect w-md waves-light m-b-5 ml-auto float-right link">
+                                    <i class="mdi mdi-border-color"></i>
+                                    Edit Vehicle</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card m-b-20 card-body card-inverse card-primary text-xs-center">
+                                <div class="card-heading">
+                                    <h3 class="card-title">Vehicle Details</h3>
+                                </div>
+                                <table class="table2">
+                                    <thead>
+                                        <tr>
+                                            <th class="one">Name</th>
+                                            <td class="two"><%= vehicle.vehicleName %></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="one">Operator</th>
+                                            <td class="two">
+                                                <a href="/operator/all">
+                                                    <%= assignment?.operator?.firstname %>
+                                                 <%= assignment?.operator?.lastname %>
+                                                 (Driver ID :<%= assignment?.operator?.driverID %>)
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="one">Type</th>
+                                            <td class="two"><%= vehicle.type %></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="one">Status</th>
+                                            <td class="two">Active</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="one">VIN/SN</th>
+                                            <td class="two"><%= vehicle.vin %></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="one">License Plate</th>
+                                            <td class="two"><%= vehicle.licensePlate %></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="one">Year</th>
+                                            <td class="two"><%= vehicle.year %></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="one">Maker</th>
+                                            <td class="two"><%= vehicle.make %></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="one">Model</th>
+                                            <td class="two"><%= vehicle.model %></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="one">Color</th>
+                                            <td class="two"><%= vehicle.color %></td>
+                                        </tr>
+
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- colstat-->
+
+                        <div class="col-md-6">
+                            <!-- Issues -->
+                            <div class="card m-b-20 card-body card-inverse card-primary text-xs-center">
+                                <div class="card-heading">
+                                    <h3 class="card-title">Open Issues</h3>
+                                </div>
+                                <hr>
+                                <% if(issue.length >= 1) { %>
+                                    <div class="row">
+                                        <div class="col-12 ">
+                                            <div class="stat">
+                                                <div class="stat-value">
+                                                    <a href="#">
+                                                        <div class="text-warning">
+                                                            <%= issue.length %>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <!-- <div class="stat-label">Open</div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <% issue.forEach( (dt) =>{  %>
+                                        <h5 class="issue-header">
+                                            <%= dt.summary %>
+                                        </h5>
+                                        <p class="issue-details text-muted">
+                                            <%= dt.description %>
+                                        </p>
+                                    <% }) %>
+                                <% } else { %>
+                                    <h5 class="issue-header"> No Active Issues </h5>
+                                <% } %>
+                            </div>
+                </div> <!-- container -->
+
+            </div> <!-- content -->
+
+            <%- include('../includes/footer.ejs') %>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- End Right content here -->
+        <!-- ============================================================== -->
+
+
+        <!-- Right Sidebar -->
+        <%- include('../includes/rightbar.ejs') %>
+        <!-- /Right-bar -->
+
+    </div>
+    <!-- END wrapper -->
+
+
+    <!-- Scripts -->
+    <%- include('../includes/footerscripts.ejs') %>
+
+</body>
+
+</html>
