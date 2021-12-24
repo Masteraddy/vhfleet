@@ -23,10 +23,7 @@ const indexRoutes = require("./routes/index");
 const app = express();
 // mongoose.set('useFindAndModify', false);
 
-const MONGO_URI =
-  process.env.MONGO_URI ||
-  "mongodb+srv://masteraddy:adeshile@cluster0.ufp8b.mongodb.net/vhfleettest?retryWrites=true&w=majority";
-// "mongodb://localhost/vhfleetest";
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost/vhfleetest";
 
 // MONGOOSE CONNECTION
 mongoose
