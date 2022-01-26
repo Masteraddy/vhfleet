@@ -6,34 +6,34 @@ const Schema = mongoose.Schema;
 const issueSchema = new Schema({
   vehicle: {
     type: Schema.Types.ObjectId,
-    ref: "Vehicle"
+    ref: "Vehicle",
   },
   date: {
     type: Date,
-    required: true,
-    default: Date.now
+    // required: true,
+    default: Date.now,
   },
   summary: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
     type: String,
-    required: true
+    required: true,
   },
   // Serious, not serious, urgent, very urgent
   priority: {
     type: String,
-    required: true
+    required: true,
   },
   operator: {
     type: String,
-    required: true
+    required: true,
     // ref: "Operator"
   },
   active: {
-    type: Boolean
-  }
+    type: Boolean,
+  },
 });
 
 module.exports = mongoose.model("Issue", issueSchema);

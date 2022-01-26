@@ -98,7 +98,7 @@ app.use(methodOverride("_method"));
 
 // Using the routes
 app.use("/", indexRoutes);
-app.use("/issue", connectEnsureLogin.ensureLoggedIn("/auth/login"), issueRoutes);
+app.use("/issue", issueRoutes);
 app.use("/inspection", connectEnsureLogin.ensureLoggedIn("/auth/login"), inspectionRoutes);
 app.use("/operator", connectEnsureLogin.ensureLoggedIn("/auth/login"), operatorRoutes);
 app.use("/vehicle", vehicleRoutes);

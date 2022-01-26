@@ -84,17 +84,22 @@ router.post("/location/login", async (req, res) => {
 
 router.get("/one/:id", connectEnsureLogin.ensureLoggedIn("/auth/login"), async (req, res) => {
   const id = req.params.id;
-  let foundVehicle = await Vehicle.findOne({ _id: id });
-  let foundIssue = await Issue.find({ vehicle: id });
-  let assignment = await Assignment.findOne({ vehicle: id })
-    .sort({ createdAt: -1 })
-    .populate("operator");
+  try {
+    let foundVehicle = await Vehicle.findOne({ _id: id });
+    let foundIssue = await Issue.find({ vehicle: id });
+    let assignment = await Assignment.findOne({ vehicle: id })
+      .sort({ createdAt: -1 })
+      .populate("operator");
 
-  res.render("vehicle/one", connectEnsureLogin.ensureLoggedIn("/auth/login"), {
-    vehicle: foundVehicle,
-    issue: foundIssue,
-    assignment,
-  });
+    res.render("vehicle/one", {
+      vehicle: foundVehicle,
+      issue: foundIssue,
+      assignment,
+    });
+  } catch (error) {
+    console.log(error);
+    res.redirect("/vehicle/all");
+  }
 });
 
 module.exports = router;
