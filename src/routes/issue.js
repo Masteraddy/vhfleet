@@ -51,7 +51,7 @@ router.post("/add-mobile", async (req, res) => {
     const operatorDt = assign[0]?.operator;
     const operator = `${operatorDt.firstname} ${operatorDt.lastname}`;
 
-    if (!vehicle || !operator || !date || !summary || !description || !priority) {
+    if (!vehicle || !operator || !summary || !description || !priority) {
       res.status(500).json({ msg: "please enter all required field" });
       return;
     }
