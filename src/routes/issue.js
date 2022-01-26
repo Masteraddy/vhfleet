@@ -64,7 +64,7 @@ router.post("/add-mobile", async (req, res) => {
       operator,
     });
     await issue.save();
-    res.status(201).json(issue);
+    res.status(201).json({success: true, issue});
   } catch (error) {
     res.status(500).json({ msg: "Error while adding data", error });
   }
